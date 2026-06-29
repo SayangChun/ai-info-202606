@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 模型信息展示 · 截至 2026年6月底</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <h1>AI 模型信息展示</h1>
+        <div class="subtitle">截至 2026年6月底 · 国内外主要 AI 厂商与前沿模型</div>
+      </div>
+      <button id="theme-toggle" class="theme-btn" aria-label="切换深色/浅色模式">🌙 深色模式</button>
+    </header>
+
+    <!-- 控制栏 -->
+    <div class="controls">
+      <!-- 搜索 -->
+      <div class="control-group">
+        <label for="search">搜索模型 / 厂商</label>
+        <input type="text" id="search" placeholder="输入关键词..." autocomplete="off">
+      </div>
+
+      <!-- 厂商筛选 -->
+      <div class="control-group" style="min-width: 260px;">
+        <label>厂商筛选（可多选）</label>
+        <div id="vendor-chips" class="filter-chips"></div>
+      </div>
+
+      <!-- 快速过滤 -->
+      <div class="control-group">
+        <label>能力过滤</label>
+        <div class="toggle-row">
+          <label class="toggle">
+            <input type="checkbox" id="filter-reasoning">
+            <span>支持推理</span>
+          </label>
+          <label class="toggle">
+            <input type="checkbox" id="filter-multimodal">
+            <span>多模态</span>
+          </label>
+          <label class="toggle">
+            <input type="checkbox" id="filter-open">
+            <span>开放权重</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- 价格筛选 -->
+      <div class="control-group">
+        <label for="price-filter">输入价格区间 (USD/M)</label>
+        <select id="price-filter">
+          <option value="">全部</option>
+          <option value="0-0.5">&lt; $0.5</option>
+          <option value="0.5-2">$0.5 ~ $2</option>
+          <option value="2-5">$2 ~ $5</option>
+          <option value="5+">&gt; $5</option>
+        </select>
+      </div>
+
+      <!-- 上下文筛选 -->
+      <div class="control-group">
+        <label for="context-filter">上下文窗口</label>
+        <select id="context-filter">
+          <option value="">全部</option>
+          <option value="200k">≥ 200K</option>
+          <option value="1m">≥ 1M</option>
+        </select>
+      </div>
+
+      <div class="control-group" style="align-self: flex-end;">
+        <button id="clear-filters">清除筛选</button>
+      </div>
+    </div>
+
+    <div style="margin-bottom: 8px;">
+      <span id="result-count" class="count"></span>
+    </div>
+
+    <!-- 表格 -->
+    <div class="table-wrapper">
+      <table id="ai-table">
+        <thead>
+          <tr>
+            <th data-sort="vendor">厂商</th>
+            <th data-sort="model">模型</th>
+            <th data-sort="updateDate">更新时间</th>
+            <th data-sort="contextWindow">上下文</th>
+            <th data-sort="inputPrice">输入价格</th>
+            <th data-sort="outputPrice">输出价格</th>
+            <th data-sort="intelligence">智能指数</th>
+            <th data-sort="speed">速度 (t/s)</th>
+            <th>能力</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="table-body"></tbody>
+      </table>
+    </div>
+
+    <footer>
+      <div class="disclaimer">
+        来源参考：Artificial Analysis、OpenAI、Anthropic、Google DeepMind、xAI、DeepSeek、Alibaba、Zhipu、Kimi、MiniMax、Mistral 等公开资料，于2026年6月底整理。
+      </div>
+    </footer>
+  </div>
+
+  <!-- 详情 Modal -->
+  <div id="modal" class="modal" aria-hidden="true">
+    <div class="modal-backdrop" id="modal-backdrop"></div>
+    <div class="modal-content" role="dialog" aria-modal="true">
+      <div class="modal-header">
+        <h2 id="modal-title"></h2>
+        <button class="modal-close" id="modal-close" aria-label="关闭">×</button>
+      </div>
+      <div class="modal-body" id="modal-body"></div>
+      <div style="margin-top: 16px; text-align: right;">
+        <a id="modal-link" href="#" target="_blank" class="link">访问官网 →</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
