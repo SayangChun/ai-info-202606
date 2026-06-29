@@ -35,4 +35,4 @@ Artificial Analysis、OpenAI、Anthropic、Google DeepMind、xAI、DeepSeek、Al
 
 ## License
 
-MIT (or as you prefer)
+MIT
